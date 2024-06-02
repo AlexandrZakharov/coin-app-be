@@ -15,13 +15,13 @@ export class UserService {
       return await this.findUserByTgId(tgId);
     } catch (error) {
       const ingredients = {
-        top_bun: 10,
-        tomato: 10,
-        beef: 10,
-        cheese: 10,
-        bottom_bun: 10,
-        sauce: 10,
-        salad: 10,
+        top_bun: 100,
+        tomato: 100,
+        beef: 100,
+        cheese: 100,
+        bottom_bun: 100,
+        sauce: 100,
+        salad: 100,
       };
 
       const user = new this.userModel({ tgId, username, ingredients });

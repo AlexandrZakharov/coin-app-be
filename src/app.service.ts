@@ -46,11 +46,9 @@ export class AppService implements OnModuleInit {
   async createBurgers(): Promise<void> {
     const bigMacIngredients = [
       "top_bun",
-      "beef",
       "cheese",
       "tomato",
       "beef",
-      "cheese",
       "bottom_bun",
     ];
     const cheeseburgerIngredients = [
