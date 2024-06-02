@@ -1,6 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-import * as process from 'process';
 
 @Schema()
 export class User extends Document {
@@ -19,7 +18,10 @@ export class User extends Document {
   @Prop({ type: Map, of: Number })
   ingredients: Map<string, number>;
 
-  @Prop({ default: process.env.DEFAULT_AVATAR })
+  @Prop({
+    default:
+      'https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?size=338&ext=jpg&ga=GA1.1.1788614524.1717113600&semt=ais_user',
+  })
   photoUrl: string;
 
   @Prop({ default: 'big_mac' })
