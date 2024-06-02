@@ -3,6 +3,7 @@ import { CheckCombinationDto } from './dto/check-combination.dto';
 import { UserService } from '../user/user.service';
 import { BurgerService } from '../burger/burger.service';
 import { User } from '../user/user.schema';
+import { Burger } from '../burger/burger.schema';
 
 @Injectable()
 export class GameService {
