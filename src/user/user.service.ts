@@ -1,4 +1,4 @@
-import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { User } from './user.schema';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
@@ -20,6 +20,8 @@ export class UserService {
         beef: 10,
         cheese: 10,
         bottom_bun: 10,
+        sauce: 10,
+        salad: 10,
       };
 
       const user = new this.userModel({ tgId, username, ingredients });

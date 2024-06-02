@@ -27,6 +27,8 @@ export class AppService implements OnModuleInit {
       { name: "Beef", slug: "beef", price: 2 },
       { name: "Cheese", slug: "cheese", price: 2 },
       { name: "Bottom Bun", slug: "bottom_bun", price: 1 },
+      { name: "Salad", slug: "salad", price: 1 },
+      { name: "Sauce", slug: "sauce", price: 1 },
     ];
 
     for (const ingredient of ingredients) {
