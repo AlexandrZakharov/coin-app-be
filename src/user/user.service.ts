@@ -60,4 +60,12 @@ export class UserService {
 
     return user.save();
   }
+
+  async deleteUser(id: string) {
+    await this.userModel.findOneAndDelete({ _id: id });
+  }
+
+  async getAll() {
+    return this.userModel.find();
+  }
 }

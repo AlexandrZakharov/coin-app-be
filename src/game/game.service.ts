@@ -1,20 +1,19 @@
-import { ConflictException, Injectable } from '@nestjs/common';
-import { CheckCombinationDto } from './dto/check-combination.dto';
-import { UserService } from '../user/user.service';
-import { BurgerService } from '../burger/burger.service';
-import { User } from '../user/user.schema';
-import { Burger } from '../burger/burger.schema';
+import { ConflictException, Injectable } from "@nestjs/common";
+import { CheckCombinationDto } from "./dto/check-combination.dto";
+import { UserService } from "../user/user.service";
+import { BurgerService } from "../burger/burger.service";
+import { User } from "../user/user.schema";
 
 @Injectable()
 export class GameService {
   constructor(
     private readonly userService: UserService,
-    private readonly burgerService: BurgerService,
+    private readonly burgerService: BurgerService
   ) {}
 
   async checkCombination(
-    dto: CheckCombinationDto,
-  ): Promise<{ isCorrect: boolean; user: User }> {
+    dto: CheckCombinationDto
+  ): Promise<{ isCorrect: boolean; user: User; burgerPrice: number }> {
     const user = await this.userService.findUserByTgId(dto.tgId);
     const burger = await this.burgerService.findBySlug(user.order);
     const isCorrect = this.isEqual(dto.combination, burger.ingredients);
@@ -22,16 +21,17 @@ export class GameService {
       isCorrect,
       burger.price,
       user,
-      dto.combination,
+      dto.combination
     );
     const updatedUser = await this.userService.updateUserByTgId(
       dto.tgId,
-      newUserData,
+      newUserData
     );
 
     return {
       isCorrect,
       user: updatedUser,
+      burgerPrice: burger.price
     };
   }
 
@@ -39,9 +39,9 @@ export class GameService {
     isEqual: boolean,
     burgerPrice: number,
     user: User,
-    combination: string[],
+    combination: string[]
   ): Promise<Partial<User>> {
-    const balance = isEqual ? user.balance + burgerPrice : user.balance - 10;
+    const balance = isEqual ? user.balance + burgerPrice : user.balance;
     const burgersMade = (user.burgersMade += 1);
     const order = await this.burgerService.getRandomBurgerSlug();
     const ingredients = new Map();
@@ -58,7 +58,7 @@ export class GameService {
       balance,
       burgersMade,
       order,
-      ingredients,
+      ingredients
     };
   }
 
